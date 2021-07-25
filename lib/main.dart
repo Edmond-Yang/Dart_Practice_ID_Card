@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
-  home: University(),
+  home: UniversityCard(),
 ));
 
-class University extends StatelessWidget {
-  const University({Key? key}) : super(key: key);
+class UniversityCard extends StatefulWidget {
+  const UniversityCard({Key? key}) : super(key: key);
+
+  @override
+  _UniversityCardState createState() => _UniversityCardState();
+}
+
+class _UniversityCardState extends State<UniversityCard> {
+
+  int gradeLevel = 0 ;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +22,7 @@ class University extends StatelessWidget {
       appBar: AppBar(
         title: Text('NCHU ID CARD'),
         centerTitle: true,
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Colors.grey[850],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
@@ -75,7 +83,7 @@ class University extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-                '2',
+                '$gradeLevel',
                 style: TextStyle(
                   color: Colors.amber,
                   fontSize: 30.0,
@@ -84,7 +92,7 @@ class University extends StatelessWidget {
             ),
             SizedBox(height: 30),
             Row(
-              children: [
+              children: <Widget>[
                 Icon(
                   Icons.email,
                   color: Colors.grey,
@@ -98,13 +106,20 @@ class University extends StatelessWidget {
                     letterSpacing: 2.0,
                   ),
                 ),
-
               ],
             ),
-
           ],
-        )
-      )
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          setState(() {
+            gradeLevel ++ ;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[700],
+      ),
     );
   }
 }
